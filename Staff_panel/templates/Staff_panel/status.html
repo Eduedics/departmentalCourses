@@ -1,0 +1,72 @@
+<style>
+     #total-students{
+        background-color: #4cb4c7;
+    }
+    #total-departments{
+        background-color: #7abecc;
+    }
+    #total-courses{
+        background-color: #7CD1C0;
+    }
+
+</style>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="hello-user">
+            <p style="background-color: black; text-align: center;"><span style="color: yellow;">Hello</span> <span style="color: red;">{{request.user}}</span> </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-students">
+                <div class="card-header">
+                    <h5 class="card-title">Total Students</h5>
+                    <div class="card-body">
+                        <h3 class="card-title">{{total_student}}</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-departments">
+                <div class="card-header">
+                    <h5 class="card-title">Total Departments</h5>
+                    <div class="card-body">
+                        <h3 class="card-title">{{total_departments}}</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-courses">
+                <div class="card-header">
+                    <h5 class="card-title">Total courses</h5>
+                    <div class="card-body">
+                        <h3 class="card-title">{{total_course}}</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

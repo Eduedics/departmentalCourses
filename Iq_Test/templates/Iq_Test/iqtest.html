@@ -1,0 +1,14 @@
+{%extends 'departments/base.html'%}
+{%load static%}
+{%block content%}
+<br>
+    <form method="POST" action="{% url 'iq_test' %}">
+        {% csrf_token %}
+        {% for question in questions %}
+            <p>{{ question.question }}</p>
+            <input type="text" name="{{ question.id }}" required>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+
+{%endblock content%}

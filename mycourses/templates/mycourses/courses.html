@@ -1,0 +1,267 @@
+{% extends 'departments/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'mycourses/css/courses.css' %}">
+<style>
+  .search-button a {
+  color: green;
+  border-radius: 10%;
+  text-decoration: blink;
+  color: #fff;
+}
+</style>
+<div class="row">
+    <div class="search-button">
+      <a class="btn btn-primary mt-3 mb-3" href="{%url 'search_courses'%}">Search a Course</a>
+    </div>
+  <div class="col">
+    <div class="card mt-3 mb-2">
+      <h2>PROGRAMMES</h2>
+      <br>
+      <hr>
+      {% for course in page_obj %}
+        <ul>
+          <li>
+            <a href="{% url 'course_detail' course.id %}" data-course-id="{{ course.id }}" class="course-link">{{ course.name }}</a>
+          </li>
+          <hr>
+        </ul>
+      {% endfor %}
+
+      <div class="pagination">
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="current-page">{{ page_obj.number }}</span>
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <script>
+  const courseLinks = document.querySelectorAll('.course-link');
+  const overviewContent = document.querySelector('#overview-content');
+  const courseStructureContent = document.querySelector('#course-structure-content');
+  const admissionRequirementContent = document.querySelector('#admission-requirement-content');
+  const feeStructureContent = document.querySelector('#fee-structure-content');
+
+  courseLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const courseId = link.dataset.courseId;
+      fetchCourseDetails(courseId);
+    });
+  });
+
+  function fetchCourseDetails(courseId) {
+  // Make an AJAX request to fetch the course details based on the courseId
+  // Replace the placeholder URLs below with your actual Django view URLs for fetching the course details
+
+  // Fetch Overview
+  // fetch(`/courses_detail/${courseId}/overview/`)
+  // .then((response) => response.json())
+  // .then((data) => {
+  //   overviewContent.innerHTML = data.overview;
+  // });
+  fetch(`/courses_detail/${courseId}/`)
+    .then((response) => response.text())
+    .then((data) => {
+      overviewContent.innerHTML = data;
+    });
+
+  // Fetch Course Structure
+  fetch(`/courses_detail/${courseId}/course-structure/`)
+    .then((response) => response.text())
+    .then((data) => {
+      courseStructureContent.innerHTML = data;
+    });
+
+  // Fetch Admission Requirement
+  fetch(`/courses_detail/${courseId}/admission-requirement/`)
+    .then((response) => response.text())
+    .then((data) => {
+      admissionRequirementContent.innerHTML = data;
+    });
+
+  // Fetch Fee Structure
+  fetch(`/courses_detail/${courseId}/fee-structure/`)
+    .then((response) => response.text())
+    .then((data) => {
+      feeStructureContent.innerHTML = data;
+    });
+}
+
+  // function fetchCourseDetails(courseId) {
+  //   // Make AJAX requests to fetch the course details based on the courseId
+  //   // Replace the placeholder URLs below with your actual Django view URLs for fetching the course details
+
+  //   // Fetch Overview
+  //    fetch(`/courses_detail/${courseId}/`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       overviewContent.innerHTML = data.overview;
+  //       courseStructureContent.innerHTML = data.course_structure;
+  //       admissionRequirementContent.innerHTML = data.admission_requirement;
+
+  //       if (data.fee_structure) {
+  //         feeStructureContent.innerHTML = `<a href="${data.fee_structure}">View Fee Structure</a>`;
+  //       } else {
+  //         feeStructureContent.innerHTML = 'No fee structure available.';
+  //       }
+  //     });
+
+  //   // Fetch Course Structure
+  //   fetch(`/courses_detail/${courseId}/course-structure/`)
+  //     .then((response) => response.text())
+  //     .then((data) => {
+  //       courseStructureContent.innerHTML = data;
+  //     });
+
+  //   // Fetch Admission Requirement
+  //   fetch(`/courses_detail/${courseId}/admission-requirement/`)
+  //     .then((response) => response.text())
+  //     .then((data) => {
+  //       admissionRequirementContent.innerHTML = data;
+  //     });
+
+  //   // Fetch Fee Structure
+  //   fetch(`/courses_detail/${courseId}/fee-structure/`)
+  //     .then((response) => response.text())
+  //     .then((data) => {
+  //       feeStructureContent.innerHTML = data;
+  //     });
+  // }
+</script>
+ -->
+ <script>
+  const overviewButton = document.querySelector('#overview');
+  const courseStructureButton = document.querySelector('#course-structure');
+  const admissionRequirementButton = document.querySelector('#admission-requirement');
+  const feeStructureButton = document.querySelector('#fee-structure');
+
+  overviewButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const courseId = overviewButton.dataset.courseId;
+    fetch(`/courses_detail/${courseId}/overview/`)
+      .then((response) => response.text())
+      .then((data) => {
+        const overviewContent = document.querySelector('#overview-content');
+        overviewContent.innerHTML = data;
+      });
+  });
+
+  courseStructureButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const courseId = courseStructureButton.dataset.courseId;
+    fetch(`/courses_detail/${courseId}/course-structure/`)
+      .then((response) => response.text())
+      .then((data) => {
+        const courseStructureContent = document.querySelector('#course-structure-content');
+        courseStructureContent.innerHTML = data;
+      });
+  });
+
+  admissionRequirementButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const courseId = admissionRequirementButton.dataset.courseId;
+    fetch(`/courses_detail/${courseId}/admission-requirement/`)
+      .then((response) => response.text())
+      .then((data) => {
+        const admissionRequirementContent = document.querySelector('#admission-requirement-content');
+        admissionRequirementContent.innerHTML = data;
+      });
+  });
+
+  feeStructureButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const courseId = feeStructureButton.dataset.courseId;
+    fetch(`/courses_detail/${courseId}/fee-structure/`)
+      .then((response) => response.text())
+      .then((data) => {
+        const feeStructureContent = document.querySelector('#fee-structure-content');
+        feeStructureContent.innerHTML = data;
+      });
+  });
+</script>
+
+{% endblock content %}
+
+  <div class="col-md-6 mt-3 mb-3">
+    <div id="overview" class="offcanvas-container">
+      <a class="btn btn-primary" data-bs-toggle="offcanvas" href="" role="button" aria-controls="offcanvasExample">
+        Overview
+      </a>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Overview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div id="overview-content">
+
+            <!-- Overview content for the selected course will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="course-structure" class="offcanvas-container">
+      <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+        Course Structure
+      </a>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">Course Structure</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div id="course-structure-content">
+            <!-- Course structure content for the selected course will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="admission-requirement" class="offcanvas-container">
+      <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+        Admission Requirement
+      </a>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Admission Requirement</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div id="admission-requirement-content">
+            <!-- Admission requirement content for the selected course will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="fee-structure" class="offcanvas-container">
+      <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+        Fees & Funding
+      </a>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Fees & Funding</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div id="fee-structure-content">
+            <!-- Fee structure content for the selected course will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

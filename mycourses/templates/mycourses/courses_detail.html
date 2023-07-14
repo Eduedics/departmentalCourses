@@ -1,0 +1,23 @@
+{% extends 'departments/base.html' %}
+{% load static %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Overview</th>
+      <th>Course Structure</th>
+      <th>Admission Requirement</th>
+      <th>Fees & Funding</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ course.overview }}</td>
+      <td>{{ course.course_structure }}</td>
+      <td>{{ course.admission_requirement }}</td>
+      <td>{{ course.fee_structure }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}

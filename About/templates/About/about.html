@@ -1,0 +1,14 @@
+{% extends 'departments/base.html' %}
+{% block content %}
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img style="width: 200px;  height: 200px;  border-radius: 50%;  object-fit: cover;" class="img-fluid img-thumbnail" src="{{ about.photo.url }}" alt="About Photo">>
+        </div>
+        <div class="col-lg-7 col-md-8">
+            <h2 style="color: blue;" class="section-heading">{{ about.title }}</h2>
+            <p>{{ about.description }}</p>
+        </div>
+    </div>
+
+
+{% endblock content %}

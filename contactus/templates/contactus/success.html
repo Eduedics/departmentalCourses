@@ -1,0 +1,89 @@
+{%extends 'departments/base.html'%}
+{%load static%}
+{%block content%}
+<br>
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<style>
+    #popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#popup-content {
+  background-color: #fff;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#close-button {
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#close-button:hover {
+  background-color: #c0392b;
+}
+</style>
+<body>
+    <button id="popup-button">Submit Feedback</button>
+    <div id="popup-container">
+      <div id="popup-content">
+        <h2>Feedback Submitted Successfully</h2>
+        <p>Thank you for your feedback!</p>
+        <button id="close-button">Close</button>
+      </div>
+    </div>
+</body>
+<script>
+    document.getElementById("popup-button").addEventListener("click", function() {
+      document.getElementById("popup-container").style.display = "block";
+    });
+
+    document.getElementById("close-button").addEventListener("click", function() {
+      document.getElementById("popup-container").style.display = "none";
+    });
+
+</script>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-message">
+    <h3>Feedback Submitted Successfully</h3>
+    <p>Thank you for your feedback!</p>
+  </div>
+  <div>
+    <a style="align-content: center;" class="btn btn-outline-primary mt-4" href="{%url 'home'%}">Go Back</a>
+  </div>
+</body>
+</html>
+
+{%endblock content%}

@@ -1,0 +1,95 @@
+.Hello-msg{
+    margin-right: 20px;
+    color: blue;
+    font-size: 20px;
+    font-family: cursive;
+  }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.logo {
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+/*.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}*/
+.menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-right: 15px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+}
+.nav-links li a:hover {
+  color: #ffca28;
+}
+/*@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-open .nav-links {
+    display: flex;
+    flex-direction: column;
+  }
+}*/
+
+.dropdown-menu {
+  display: none;
+  position: relative;
+  background-color: #333;
+  padding: 10px;
+}
+
+.dropdown-menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+  }

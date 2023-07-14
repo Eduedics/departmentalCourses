@@ -1,0 +1,49 @@
+{% extends 'departments/base.html' %}
+{% load static %}
+
+{% block content %}
+  <form class="mb-3 mt-5" method="GET" action="{% url 'search_courses' %}">
+    <input style="border-radius: 20px;text-align: center;" type="text" name="query" placeholder="Enter course name">
+    <button style="background: green;color: white;border-radius: 20px;align-content: center;" type="submit">Search</button>
+  </form>
+
+  {% if query %}
+    <h3>Search Results for "{{ query }}"</h3>
+    {% if courses %}
+        <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>name</th>
+                        <th>overview</th>
+                        <th>course_structure</th>
+                        <th>admission_requirement</th>
+                        <th>course_structure</th>
+                        <th>fee_structure</th>
+                        <th>department</th>
+                        <th></th>
+
+                    </tr>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.overview }}</td>
+                            <td>{{ course.course_structure }}</td>
+                            <td>{{ course.admission_requirement }}</td>
+                            <td>{{ course.course_structure }}</td>
+                            <td>{{ course.fee_structure }}</td>
+                            <td>{{ course.department }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{%url 'attach_certificate'%}">Enroll</a></td>
+
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+
+    {% else %}
+      <p style="color: red;">No courses found.</p>
+    {% endif %}
+  {% endif %}
+  <div class="mt-3 mb-3">
+    <a class="btn btn-warning" href="{%url 'courses'%}">&#8592;Go Back</a>
+  </div>
+{%endblock content%}

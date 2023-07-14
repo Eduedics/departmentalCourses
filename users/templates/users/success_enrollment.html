@@ -1,0 +1,30 @@
+{% extends 'departments/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-message mt-6">
+    <h3>Enrollment Completed Successfully</h3>
+    <p>We will be in contact whithin 24Hrs</p>
+  </div>
+  <div>
+    <a style="align-content: center;" class="btn btn-outline-primary mt-4" href="{%url 'home'%}">Go Back</a>
+  </div>
+</body>
+</html>
+
+{%endblock content%}

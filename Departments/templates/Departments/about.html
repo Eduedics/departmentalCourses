@@ -1,0 +1,32 @@
+{% extends 'departments/base.html' %}
+{% block content %}
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img style="height: 300px; width: 200px;" class="img-fluid img-thumbnail" src="{{ items.VisionAndValues_image.url }}" alt="">
+        </div>
+        <div class="col-lg-7 col-md-8">
+            <h2 style="color: blue;" class="section-heading">VISION & VALUES</h2>
+            {% for item in abt %}
+                <p>{{ item.VisionAndValues }}:</p>
+                <p>
+                    <ul style="list-style: none; margin: 0.2em; color: blue;">
+                        <li>{{ item.Our_Qualities }}</li>
+                    </ul>
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-lg-7 col-md-8">
+            <h2 style="color: blue;" class="section-heading">OUR HISTORY</h2>
+            {% for item in abt %}
+                <p>{{ item.History }}:</p>
+            {% endfor %}
+        </div>
+        <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img style="height: 300px; width: 200px;" class="img-fluid img-thumbnail" src="{{ item.History_image.url }}" alt="">
+        </div>
+    </div>
+{% endblock content %}
+

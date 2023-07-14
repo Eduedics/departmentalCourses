@@ -1,0 +1,144 @@
+{% extends 'Staff_panel/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="mt-3 mb-3">
+        <a class="btn btn-warning" href="{% url 'home' %}">&#8592;Go Back</a>
+    </div>
+    <br>
+    {% include 'Staff_panel/status.html' %}
+    <br>
+
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <h5>Students</h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-primary" href="{% url 'create_student' %}">Create Students</a>
+                <table class="table table-sm">
+                    <tr>
+                        <th></th>
+                        <th>first_name</th>
+                        <th>second_name</th>
+                        <th>surname</th>
+                        <th>service_no</th>
+                        <th>id_no</th>
+                        <th>course</th>
+                        <th>address</th>
+                        <th>email</th>
+                    </tr>
+                    {% for stude in student %}
+                        <tr>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'student' stude.id %}">View</a></td>
+                            <td>{{ stude.first_name }}</td>
+                            <td>{{ stude.second_name }}</td>
+                            <td>{{ stude.surname }}</td>
+                            <td>{{ stude.service_no }}</td>
+                            <td>{{ stude.id_no }}</td>
+                            <td>{{ stude.course }}</td>
+                            <td>{{ stude.address }}</td>
+                            <td>{{ stude.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                {% if student.has_other_pages %}
+                    <ul class="pagination">
+                        {% if student.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?student_page={{ student.previous_page_number }}">Previous</a></li>
+                        {% endif %}
+                        {% for i in student.paginator.page_range %}
+                            {% if student.number == i %}
+                                <li class="page-item active"><a class="page-link" href="?student_page={{ i }}">{{ i }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?student_page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if student.has_next %}
+                            <li class="page-item"><a class="page-link" href="?student_page={{ student.next_page_number }}">Next</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-5">
+        <h5>Departments</h5>
+        <hr>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <a class="btn btn-primary" href="{% url 'create_department' %}">Create Department</a>
+                <tr>
+                    <th>name</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for dep in departments %}
+                    <tr>
+                        <td>{{ dep.name }}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_department' dep.id %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_department' dep.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% if departments.has_other_pages %}
+                <ul class="pagination">
+                    {% if departments.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?dept_page={{ departments.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    {% for i in departments.paginator.page_range %}
+                        {% if departments.number == i %}
+                            <li class="page-item active"><a class="page-link" href="?dept_page={{ i }}">{{ i }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?dept_page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if departments.has_next %}
+                        <li class="page-item"><a class="page-link" href="?dept_page={{ departments.next_page_number }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-5">
+        <h5>Courses</h5>
+        <hr>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <a class="btn btn-primary" href="{% url 'create_course' %}">Create Course</a>
+                <tr>
+                    <th>name</th>
+                    <th>department</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for cour in course %}
+                    <tr>
+                        <td>{{ cour.name }}</td>
+                        <td>{{ cour.department }}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_course' cour.id %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_course' cour.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% if course.has_other_pages %}
+                <ul class="pagination">
+                    {% if course.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?course_page={{ course.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    {% for i in course.paginator.page_range %}
+                        {% if course.number == i %}
+                            <li class="page-item active"><a class="page-link" href="?course_page={{ i }}">{{ i }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?course_page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if course.has_next %}
+                        <li class="page-item"><a class="page-link" href="?course_page={{ course.next_page_number }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%endblock content%}

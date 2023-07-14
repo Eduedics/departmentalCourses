@@ -1,0 +1,10 @@
+{%extends 'departments/base.html'%}
+{%load static%}
+{%block content%}
+<br>
+    <h1>Your IQ Test Results</h1>
+    {% if response in user_responses %}
+        <p>{{ response.question }} - Your response: {{ response.response }}</p>
+    {% endif %}
+
+{%endblock content%}

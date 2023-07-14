@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<style>
+  body {
+      background-color: #ffffff; /* Set the desired background color for the body */
+    }
+  .Hello-msg{
+    margin-right: 20px;
+    color: blue;
+    font-size: 20px;
+    font-family: cursive;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ff0000;
+    color: #fff;
+  }
+
+  .logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .menu-icon {
+      display: none;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+  }
+
+  .nav-links li {
+    margin-right: 15px;
+  }
+
+  .nav-links li a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .nav-links li a:hover {
+    color: #ffca28;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: black; /* Set the background color to white */
+    padding: 10px;
+    z-index: 999; /* Ensure the dropdown appears on top of other elements */
+  }
+
+  .dropdown-menu a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+<body>
+  <nav>
+    <div class="navbar">
+      <a href="#" class="logo">Garissa University</a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Community</a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'history' %}">History</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'courses' %}">Courses</a></li>
+        <li><a href="{% url 'attach_certificate' %}">Apply now</a></li>
+        {%if request.user.is_staff%}
+            <li><a href="{% url 'dashboard' %}">Admin</a></li>
+        {%else%}
+            <li><a href="{% url 'login' %}">Student</a></li>
+        {%endif%}
+        <!-- <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Admission</a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'attach_certificate' %}">Apply now</a></li>
+            <li><a href="#">Certificate</a></li>
+            <li><a href="#">Application letter</a></li>
+          </ul>
+        </li> -->
+        <li><a href="{% url 'feedback' %}">Contact</a></li>
+        <li><a href="#">Blog</a></li>
+        <!-- <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle">Community</a>
+          <ul class="dropdown-menu">
+            {%if request.user.is_staff%}
+              <li><a href="{% url 'dashboard' %}">Admin</a></li>
+            {%endif%}
+            <li><a href="{% url 'login' %}">Student</a></li>
+          </ul>
+        </li> -->
+        <li><a href="{% url 'userpage' %}">My Details</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+      </ul>
+      <span class="Hello-msg">Hello {{ request.user }}</span>
+      <div class="navbar-link">
+          <div style="display: flex;">
+            {%if user.is_authenticated%}
+              <li><a class="Hello-msg btn-sm btn btn-danger" href="{% url 'logout' %}">logout</a></li>
+              <li><a class="Hello-msg btn-sm btn btn-outline-primary" href="{% url 'iq_test' %}">Test</a></li>
+            {%else%}
+
+                <a class="btn btn-sm btn-success mr-3" href="{% url 'login' %}">login</a>
+                <a class="btn btn-sm btn-secondary ml-3" href="{% url 'register' %} ">Register</a>
+          </div>
+        {%endif%}
+      </div>
+    </div>
+  </nav>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+    });
+  });
+</script>
+
+
+</body>
+</html>

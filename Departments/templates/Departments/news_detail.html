@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News Detail</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .news-title {
+      color: blue;
+    }
+    .publish-date {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="news-title">{{ news.Title }}</h2>
+    <p>{{ news.content }}</p>
+    <p class="publish-date">Publish Date: {{ news.puplish_date }}</p>
+  </div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

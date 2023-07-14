@@ -1,0 +1,20 @@
+{%extends 'departments/base.html'%}
+{%load static%}
+{% load crispy_forms_tags%}
+{%block content%}
+<br>
+
+<h3 style="color: blue; text-align: center;">contact us</h3>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <div class="form-group mt-2 text-center">
+          <button class="btn btn-primary align-center mb-2" type="submit">Submit</button>
+      </div>
+    </div>
+       </div>
+    </form>
+
+
+{%endblock content%}

@@ -1,0 +1,35 @@
+{%extends 'departments/base.html'%}
+{%block content%}
+    <h3 class="mb-3 mt-3 p-5" style="color: red;text-align: center;">personal Details</h3>
+    <div class="row">
+        <div class="co-md">
+            <div class="card card-body">
+                <table class='table table-sm'>
+                    <tr>
+                        <th>Student_name</th>
+                        <th>name</th>
+                        <th>course_structure</th>
+                        <th>department</th>
+                        <th>overview</th>
+                    </tr>
+
+                    <tr>
+                        <td>{{user.students.first_name}} {{user.students.second_name}} {{user.students.surname}}</td>
+                        <td>{{courses.name}}</td>
+                        <td>{{courses.course_structure}}</td>
+                        <td>{{courses.department}}</td>
+                        <td>{{courses.overview}}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col">
+            <a class="btn btn-danger" style="text-align: center;" href="{%url 'profile'%}"> Check your Profile</a>
+        </div>
+
+    </div> -->
+{%endblock content%}
